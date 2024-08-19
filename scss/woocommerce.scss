@@ -1,0 +1,13 @@
+.shiptimize {
+    &-export__status {
+      display: inline-block;
+      margin-left: 10px;
+      margin-top:5px;
+    }
+
+    &-settings{
+      &__key {
+        min-width:350px;
+      }
+    }
+}

@@ -1,0 +1,318 @@
+.shiptimize {
+    &-shipping-options {
+        border: 0;
+
+        & td {
+            border: 0;
+        }
+    }
+
+    &-marketplace-settings {
+        padding: 20px;
+    }
+
+    &-connect {
+        padding: 0.6180469716em 1.41575em;
+        color: white;
+        background-color: #FFA300;
+        display: inline-block;
+    }
+
+    &-pickup {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        &__overlay {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            z-index: 9999;
+
+            background: rgba(255, 255, 255, 0.9);
+            top: 0;
+            left: 0;
+        }
+
+        &__mapWrapper {
+            z-index: 99991;
+            position: absolute;
+            top: 18%;
+            left: 7%;
+            width: 86%;
+            min-height: 50%;
+            min-height: 50vh;
+            display: flex;
+        }
+
+        /*** **/  
+        &__map-loader {  
+            width: 62%;
+            height: 100%;
+            display: none; 
+            z-index: 99999;
+            opacity: 0.9;
+            margin: auto;
+        }
+
+        /** Points loading .. */ 
+        &__mapWrapper.loading {
+            align-items: center;
+        }
+
+        &__mapWrapper.loading #shiptimizeMap, 
+        &__mapWrapper.loading .shiptimize-pickup__options,
+        &__mapWrapper.loading .shiptimize-pickup__options
+        {
+            display: none;
+        } 
+
+        &__mapWrapper.loading .shiptimize-pickup__map-loader {
+          display: inline-block;
+        }
+
+        /** 
+         * It's absolute because The map won't display 
+         * with min-height instead of height and we want to make 
+         * sure that all points are visible 
+         * so the container must be able to grow taller
+         */
+        &__map {
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            display: inline-block;
+            width: 62%;
+            height: 100%;
+            vertical-align: top;
+        }
+
+        &__title {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        &__options {
+            display: inline-block;
+            width: 38%;
+            min-height: 100%; 
+            vertical-align: top;
+
+            background: #f7f7f7;
+            padding: 20px 40px;
+        }
+
+        &__point {
+            margin-bottom: 2px;
+            font-size:12px;
+            /** because of barsonsight.nl **/ 
+            & input[type='radio'] {
+              width: auto !important; 
+              margin-top: 0 !important;
+              margin-right:5px;
+            }
+        }
+
+        &__error {
+            padding: 40px 61px;
+            position: fixed;
+            background-color: #fff;
+            color: #000000;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 9999;
+            box-shadow: 0px 3px 6.51px 0.49px rgba(0, 0, 0, 0.1);
+            font-size: 25px;
+            line-height: 1.5em;
+            display: none;
+        }
+
+        &__extended {
+            margin-top: 5px;
+            display:none;
+        }
+
+        &__extended.selected {
+            display:block;
+        }
+
+        &__label {
+            cursor:pointer;
+        }
+        
+        &__extended_label {
+            margin-right: 5px;
+        }
+
+
+        &__close {
+            position: fixed;
+            top: 8%;
+            left: 88%;
+            z-index: 9999;
+
+            &::after {
+                display: inline-block;
+                content: 'X';
+                font-size: 40px;
+                font-weight: 300;
+                color: #9c9c9c;
+                cursor: pointer;
+            }
+        }
+
+        &__validate {
+            width: 90%;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        &__point_description {
+            display:-block;
+            margin-left: 10px;
+            vertical-align: top;
+            max-width: calc(100% - 30px);
+            cursor: pointer;
+        }
+
+        &__description {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+    }
+    
+    &-btn {
+        background-color: #FFA300;
+        color: white;
+        border-radius: 5px;
+        line-height: 1.3em;
+        vertical-align: top;
+    }
+
+    &-wcfm-checkbox {
+        margin-right: 0 !important;
+    }
+
+    &-request-account {
+      & label {
+        width: 105px; 
+        text-align: right; 
+        margin-right: 10px; 
+        display: inline-block;
+      }
+
+      & input[type='text'] {
+        width:500px;
+      }
+
+      & .form-item {
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+
+    &-loader {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      z-index: 99999; 
+      top: 50%;
+      top: calc(50% - 40px);
+      left: 50%;
+      left: calc(50% - 40px); 
+    }
+
+    &-loader div {
+      display: inline-block;
+      position: absolute;
+      left: 8px;
+      width: 16px;
+      background: #fdbc3b;
+      animation: shiptimize-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    &-loader div:nth-child(1) {
+      left: 8px;
+      animation-delay: -0.24s;
+    }
+    &-loader div:nth-child(2) {
+      left: 32px;
+      animation-delay: -0.12s;
+    }
+    &-loader div:nth-child(3) {
+      left: 56px;
+      animation-delay: 0;
+    }
+
+    @keyframes shiptimize-loader {
+      0% {
+        top: 8px;
+        height: 64px;
+      }
+      50%, 100% {
+        top: 24px;
+        height: 32px;
+      }
+    }
+
+}
+
+@media (max-width: 1024px) {
+
+    .shiptimize {
+        &-choose-pickup {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .shiptimize {
+        &-pickup {
+            &__mapWrapper {
+                display: inline-block;
+                top: 10%;
+                left: 5%;
+                width: 90%;
+                min-height: 0;
+            }
+
+            &__options {
+                position: absolute;
+                top: 100%;
+                top: 45vh;
+                width: 100%;
+                min-height: 50%;
+            }
+
+            &__map {
+                width: 100%;
+                height: 45%;
+                height: 45vh;
+            }
+
+            &__close {
+                top: 2%;
+                top: 2vh;
+            }
+
+            &__error {
+                padding: 40px 20px;
+                width: 90%;
+                left: 5%;
+                top: 50%;
+                font-size: 16px;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
