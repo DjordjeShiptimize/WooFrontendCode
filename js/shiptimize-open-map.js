@@ -1,5 +1,5 @@
 import Utils from './shiptimize-utils.js';
-import L from './leaflet-1.4.0';
+import L from './leaflet-1.9.4';
 
 export default class ShiptimizeOpenMap {
 
@@ -353,7 +353,7 @@ export default class ShiptimizeOpenMap {
 
     loadScript() {
 
-        Utils.injectExternalScript(SHIPTIMIZE_PLUGIN_URL + "views/js/leaflet-1.4.0.js");
+        Utils.injectExternalScript(SHIPTIMIZE_PLUGIN_URL + "views/js/leaflet-1.9.4.js");
         this.isScriptLoaded = true;
         return;
 
